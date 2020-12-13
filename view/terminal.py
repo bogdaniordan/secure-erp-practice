@@ -1,3 +1,5 @@
+from model.crm import crm
+
 def print_menu(title, list_options):
     """Prints options in standard menu format like this:
 
@@ -50,7 +52,8 @@ def print_table(table):
     Args:
         table: list of lists - the table to print out
     """
-    pass
+    for row in table:
+        print(' '.join(row), end='\n')
 
 
 def get_input(label):

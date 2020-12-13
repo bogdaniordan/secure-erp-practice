@@ -27,7 +27,7 @@ def write_table_to_file(file_name, table, separator=';'):
         table: list of lists containing tabular data.
         separator: The CSV separator character
     """
-    with open(file_name, "w") as file:
+    with open(file_name, "a") as file:
         for record in table:
             row = separator.join(record)
             file.write(row + "\n")
