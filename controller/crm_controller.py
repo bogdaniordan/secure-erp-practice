@@ -1,6 +1,7 @@
 # export PYTHONPATH = '/home/bogdan/Desktop/Python/secure-erp-practice/'
 # import sys
 # sys.path.append('/home/bogdan/Desktop/Python/')
+import csv
 from model.crm import crm
 from view import terminal as view
 from model import data_manager
@@ -42,8 +43,10 @@ def delete_customer():
     for row in element_list:
         # print(row[:9])
         if user_input == row[0]:
-            
+            removed_row = row
             print('Customer has been deleted from the database!')
+            element_list.remove(removed_row)   
+            data_manager.write_table_to_file(crm.DATAFILE, element_list)
     #for item in customers:
     # if row[-1] == user_id:
     view.print_error_message("Not implemented yet.")
