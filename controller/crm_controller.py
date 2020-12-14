@@ -11,8 +11,7 @@ def list_customers():
     print(crm.HEADERS)
     element_list = data_manager.read_table_from_file(crm.DATAFILE)
     view.print_table(element_list)
-    # view.print_error_message("Not implemented yet.")
-    # print('x')
+
 
 
 def add_customer():
@@ -25,20 +24,29 @@ def add_customer():
     tabular.append(name)
     tabular.append(email)
     tabular.append(subscribed_status)
-    data_manager.write_table_to_file(crm.DATAFILE, tabular)
+    with open(crm.DATAFILE, 'a') as file:
+        file.write('\n')
+        file.write(''.join(tabular))
+    
     
     view.print_error_message("Not implemented yet.")
 
 
 def update_customer():
+
     view.print_error_message("Not implemented yet.")
     
 
 def delete_customer():
+    user_id = view.get_input('Please enter the id for the customer you want to delete?')
+    #for item in customers:
+    # if row[-1] == user_id:
     view.print_error_message("Not implemented yet.")
 
 
 def get_subscribed_emails():
+    # if last column == 1:
+    # list.append coloana cu email(coloana 3)
     view.print_error_message("Not implemented yet.")
 
 

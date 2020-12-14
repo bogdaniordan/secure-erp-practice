@@ -5,6 +5,4 @@
     "python.linting.pylintPath" : "usr/bin/pylint",
     // "python.pythonPath": "venv/bin/python",
     // "python.linting.pylintPath": "venv/bin/pylint"
-    // "python.linting.pylintArgs": ["--init-hook",
-    //     "import sys; sys.path.append('/home/bogdan/Desktop/Python/secure-erp-practice/')"],
 }
