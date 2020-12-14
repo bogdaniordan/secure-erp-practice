@@ -26,15 +26,18 @@ def get_biggest_revenue_transaction():
         revenue.append(row[3])
     index_of_biggest_revenue = revenue.index(max(revenue))
     transaction = element_list[index_of_biggest_revenue + 1]
+    return transaction
     print(' '.join(transaction))
 
 
 
 def get_biggest_revenue_product():
-    view.print_error_message("Not implemented yet.")
+    biggest_transaction = get_biggest_revenue_transaction()
+    product = biggest_transaction[2]
+    print(product)
 
 
-def count_transactions_between():
+def count_transactions_between(first_date, second_date):
     view.print_error_message("Not implemented yet.")
 
 
