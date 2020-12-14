@@ -50,8 +50,13 @@ def delete_customer():
 
 
 def get_subscribed_emails():
-    # if last column == 1:
-    # list.append coloana cu email(coloana 3)
+    emails = []
+    element_list = data_manager.read_table_from_file(crm.DATAFILE)
+    for row in element_list:
+        if row[-1] == '1':
+            emails.append(row[2])
+    for email in emails:
+        print(email, end='\n')
     view.print_error_message("Not implemented yet.")
 
 
