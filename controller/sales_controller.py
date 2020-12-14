@@ -1,6 +1,7 @@
 from model.sales import sales
 from view import terminal as view
-
+from model import data_manager
+from model import util
 
 def list_transactions():
     view.print_error_message("Not implemented yet.")
@@ -19,7 +20,14 @@ def delete_transaction():
 
 
 def get_biggest_revenue_transaction():
-    view.print_error_message("Not implemented yet.")
+    revenue = []
+    element_list = data_manager.read_table_from_file(sales.DATAFILE)
+    for row in element_list:
+        revenue.append(row[3])
+    index_of_biggest_revenue = revenue.index(max(revenue))
+    transaction = element_list[index_of_biggest_revenue + 1]
+    print(' '.join(transaction))
+
 
 
 def get_biggest_revenue_product():
