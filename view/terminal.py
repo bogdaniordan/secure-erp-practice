@@ -1,4 +1,6 @@
 from model.crm import crm
+from tabulate import tabulate
+from prettytable import PrettyTable
 
 def print_menu(title, list_options):
     """Prints options in standard menu format like this:
@@ -46,14 +48,18 @@ def print_general_results(result, label):
 # |--------|------------|----------|
 # |   1    | Sidewinder | missile  |
 # \-----------------------------------/
-def print_table(table):
+def print_table(table, headers):
     """Prints tabular data like above.
 
     Args:
         table: list of lists - the table to print out
     """
-    for row in table:
-        print(' '.join(row), end='\n')
+    # printed_table = PrettyTable()
+    # printed_table.field_names = headers
+    # for row in table:
+    #     printed_table.add_row(row)
+    # print(printed_table)
+    print(tabulate(table, headers))
 
 
 def get_input(label):

@@ -1,16 +1,14 @@
 # export PYTHONPATH = '/home/bogdan/Desktop/Python/secure-erp-practice/'
 # import sys
 # sys.path.append('/home/bogdan/Desktop/Python/')
-
 from model.crm import crm
 from view import terminal as view
 from model import data_manager
 from model import util
 
 def list_customers():
-    print(crm.HEADERS)
     element_list = data_manager.read_table_from_file(crm.DATAFILE)
-    view.print_table(element_list)
+    view.print_table(element_list, crm.HEADERS)
 
 
 
@@ -26,7 +24,7 @@ def add_customer():
     tabular.append(subscribed_status)
     with open(crm.DATAFILE, 'a') as file:
         file.write('\n')
-        file.write(''.join(tabular))
+        file.write(';'.join(tabular))
     
     
     view.print_error_message("Not implemented yet.")
@@ -35,10 +33,17 @@ def add_customer():
 def update_customer():
 
     view.print_error_message("Not implemented yet.")
-    
+
+
 
 def delete_customer():
-    user_id = view.get_input('Please enter the id for the customer you want to delete?')
+    element_list = data_manager.read_table_from_file(crm.DATAFILE)
+    user_input = view.get_input('Please enter the id for the customer you want to delete: ')
+    for row in element_list:
+        # print(row[:9])
+        if user_input == row[0]:
+            
+            print('Customer has been deleted from the database!')
     #for item in customers:
     # if row[-1] == user_id:
     view.print_error_message("Not implemented yet.")
