@@ -53,14 +53,28 @@ def count_transactions_between():
 
 def sum_transactions_between():
     dates = []
-    transactios_price = []
+    transactions_price = []
+    indexes = []
+    transactions_sum = []
     element_list = data_manager.read_table_from_file(sales.DATAFILE)
     first_date = view.get_input('Enter the first date (e.g. 2014-8-1): ')
     second_date = view.get_input('Enter the second date: ')
     for row in element_list:
         dates.append(row[-1])
-        transactios_price.append(row[-2])
-    
+        transactions_price.append(row[-2])
+    for date in dates:
+        if date > first_date and date < second_date:
+            indexes.append(dates.index(date))
+    print(dates)
+    print(indexes)
+    print(transactions_price)
+    for index in indexes:
+        transactions_sum.append(transactions_price[index])
+    transactions_sum = [float(i) for i in transactions_sum]
+    # print(sum(transactions_sum))
+    result = sum(transactions_sum)
+    print(f'The sum of transactions between {first_date} and {second_date} is: {result}')
+
 
 def run_operation(option):
     if option == 1:
