@@ -3,6 +3,7 @@ from view import terminal as view
 from model import data_manager
 from model import util
 
+
 def list_transactions():
     view.print_error_message("Not implemented yet.")
 
@@ -38,14 +39,28 @@ def get_biggest_revenue_product():
 
 
 def count_transactions_between():
-    first_date = view.get_input('Enter the first date: ')
+    dates = []
+    first_date = view.get_input('Enter the first date (e.g. 2014-8-1): ')
     second_date = view.get_input('Enter the second date: ')
-    view.print_error_message("Not implemented yet.")
-
+    element_list = data_manager.read_table_from_file(sales.DATAFILE)
+    for row in element_list:
+        dates.append(row[-1])
+    count = 0
+    for date in dates:
+        if date > first_date and date < second_date:
+            count +=1
+    print(f'The number of transactions between {first_date} and {second_date} is: {count}!')
 
 def sum_transactions_between():
-    view.print_error_message("Not implemented yet.")
-
+    dates = []
+    transactios_price = []
+    element_list = data_manager.read_table_from_file(sales.DATAFILE)
+    first_date = view.get_input('Enter the first date (e.g. 2014-8-1): ')
+    second_date = view.get_input('Enter the second date: ')
+    for row in element_list:
+        dates.append(row[-1])
+        transactios_price.append(row[-2])
+    
 
 def run_operation(option):
     if option == 1:

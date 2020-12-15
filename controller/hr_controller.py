@@ -45,8 +45,8 @@ def count_employees_with_clearance():
 
 
 def count_employees_per_department():
-    view.print_error_message("Not implemented yet.")
-
+    element_list = data_manager.read_table_from_file(hr.DATAFILE)
+    
 
 def run_operation(option):
     if option == 1:
