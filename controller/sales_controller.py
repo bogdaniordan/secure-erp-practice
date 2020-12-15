@@ -37,7 +37,9 @@ def get_biggest_revenue_product():
     print(product)
 
 
-def count_transactions_between(first_date, second_date):
+def count_transactions_between():
+    first_date = view.get_input('Enter the first date: ')
+    second_date = view.get_input('Enter the second date: ')
     view.print_error_message("Not implemented yet.")
 
 

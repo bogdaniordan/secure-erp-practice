@@ -1,5 +1,6 @@
 from model.hr import hr
 from view import terminal as view
+from model import data_manager
 
 
 def list_employees():
@@ -19,6 +20,8 @@ def delete_employee():
 
 
 def get_oldest_and_youngest():
+    element_list = data_manager.read_table_from_file(hr.DATAFILE)
+
     view.print_error_message("Not implemented yet.")
 
 
@@ -31,7 +34,14 @@ def next_birthdays():
 
 
 def count_employees_with_clearance():
+    employees = []
+    element_list = data_manager.read_table_from_file(hr.DATAFILE)
+    clearance_level = int(view.get_input('Please enter a clearance level: '))
     view.print_error_message("Not implemented yet.")
+    for row in element_list:
+        if  int(row[-1]) >= clearance_level:
+            employees.append(1)
+    print(f'The number of employees is: {len(employees)}')
 
 
 def count_employees_per_department():
