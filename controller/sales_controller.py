@@ -65,13 +65,9 @@ def sum_transactions_between():
     for date in dates:
         if date > first_date and date < second_date:
             indexes.append(dates.index(date))
-    print(dates)
-    print(indexes)
-    print(transactions_price)
     for index in indexes:
         transactions_sum.append(transactions_price[index])
     transactions_sum = [float(i) for i in transactions_sum]
-    # print(sum(transactions_sum))
     result = sum(transactions_sum)
     print(f'The sum of transactions between {first_date} and {second_date} is: {result}')
 

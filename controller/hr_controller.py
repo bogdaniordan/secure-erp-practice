@@ -1,6 +1,11 @@
 from model.hr import hr
 from view import terminal as view
 from model import data_manager
+import datetime
+
+def from_dob_to_age(born):
+    today = datetime.date.today()
+    return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
 
 def list_employees():
@@ -20,11 +25,18 @@ def delete_employee():
 
 
 def get_oldest_and_youngest():
+    ages = []
+    dates_of_birth = []
     element_list = data_manager.read_table_from_file(hr.DATAFILE)
+    for row in element_list:
+        ages.append(row[2])
+    for dob in ages:
+        dob = datetime.datetime.strptime(dob, '%Y-%m-%d')
+        new_dob = from_dob_to_age(dob)
+        dates_of_birth.append(new_dob)
+    print(dates_of_birth)
 
-    view.print_error_message("Not implemented yet.")
-
-
+    
 def get_average_age():
     view.print_error_message("Not implemented yet.")
 
