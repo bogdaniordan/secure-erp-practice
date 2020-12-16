@@ -5,19 +5,53 @@ from model import util
 
 
 def list_transactions():
-    view.print_error_message("Not implemented yet.")
+    element_list = data_manager.read_table_from_file(sales.DATAFILE)
+    view.print_table(element_list, sales.HEADERS)
 
 
 def add_transaction():
-    view.print_error_message("Not implemented yet.")
+    tabular = []
+    product = input('Please provide a product name: ')
+    price = view.get_input('Please provide a price for the product: ')
+    date = view.get_input('Please provide the transaction date (e.g. 2019-02-03): ')
+    transaction_id = util.generate_id()
+    customer_id = util.generate_id()
+    tabular.append(transaction_id)
+    tabular.append(customer_id)
+    tabular.append(product)
+    tabular.append(price)
+    tabular.append(date)
+    with open(sales.DATAFILE, 'a') as file:
+        file.write('\n')
+        file.write(';'.join(tabular))
+
 
 
 def update_transaction():
-    view.print_error_message("Not implemented yet.")
+    element_list = data_manager.read_table_from_file(sales.DATAFILE)
+    user_input = view.get_input('Please enter the id for the customer you want to update: ')
+    for row in element_list:
+        if user_input == row[0]:
+            customer_id = util.generate_id()
+            product = view.get_input('Please enter a product name: ')
+            price = view.get_input('Please provide a price for the product: ')
+            date = view.get_input('Please provide the transaction date (e.g. 2019-02-03): ')
+            row[1] = customer_id
+            row[2] = product
+            row[3] = price
+            row[4] = date
+            data_manager.write_table_to_file(sales.DATAFILE, element_list)
 
 
 def delete_transaction():
-    view.print_error_message("Not implemented yet.")
+    element_list = data_manager.read_table_from_file(sales.DATAFILE)
+    user_input = view.get_input('Please enter the id for the transaction you want to remove: ')
+    for row in element_list:
+        if user_input == row[0]:
+            removed_row = row
+            print('Transaction removed from the database!')
+            element_list.remove(removed_row)   
+            data_manager.write_table_to_file(sales.DATAFILE, element_list)
 
 
 def get_biggest_revenue_transaction():
@@ -52,6 +86,7 @@ def count_transactions_between():
             count +=1
     print(f'The number of transactions between {first_date} and {second_date} is: {count}!')
 
+
 def sum_transactions_between():
     dates = []
     transactions_price = []
@@ -68,7 +103,7 @@ def sum_transactions_between():
             indexes.append(dates.index(date))
     for index in indexes:
         transactions_sum.append(transactions_price[index])
-    transactions_sum = [float(i) for i in transactions_sum]
+    transactions_sum = [float(transaction) for transaction in transactions_sum]
     result = sum(transactions_sum)
     print(f'The sum of transactions between {first_date} and {second_date} is: {result}')
 
