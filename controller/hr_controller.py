@@ -27,14 +27,21 @@ def delete_employee():
 def get_oldest_and_youngest():
     ages = []
     dates_of_birth = []
+    names = []
+    indexes = []
     element_list = data_manager.read_table_from_file(hr.DATAFILE)
     for row in element_list:
         ages.append(row[2])
+        names.append(row[1])
     for dob in ages:
         dob = datetime.datetime.strptime(dob, '%Y-%m-%d')
         new_dob = from_dob_to_age(dob)
         dates_of_birth.append(new_dob)
-    print(dates_of_birth)
+    for dob in dates_of_birth:
+        indexes.append(dates_of_birth.index(max(dates_of_birth)))
+        indexes.append(dates_of_birth.index(min(dates_of_birth)))
+    print(f'The oldest employee is {names[indexes[0]]} and youngest one is {names[indexes[1]]}')
+    return (names[indexes[0]], names[indexes[1]])
 
     
 def get_average_age():
