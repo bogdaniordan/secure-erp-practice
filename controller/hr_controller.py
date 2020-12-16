@@ -7,6 +7,17 @@ def from_dob_to_age(born):
     today = datetime.date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
+def get_birth_date():
+    dates_of_birth = []
+    ages = []
+    element_list = data_manager.read_table_from_file(hr.DATAFILE)
+    for row in element_list:
+        ages.append(row[2])
+    for dob in ages:
+        dob = datetime.datetime.strptime(dob, '%Y-%m-%d')
+        new_dob = from_dob_to_age(dob)
+        dates_of_birth.append(new_dob)
+    return dates_of_birth
 
 def list_employees():
     view.print_error_message("Not implemented yet.")
@@ -25,18 +36,12 @@ def delete_employee():
 
 
 def get_oldest_and_youngest():
-    ages = []
-    dates_of_birth = []
     names = []
     indexes = []
     element_list = data_manager.read_table_from_file(hr.DATAFILE)
     for row in element_list:
-        ages.append(row[2])
         names.append(row[1])
-    for dob in ages:
-        dob = datetime.datetime.strptime(dob, '%Y-%m-%d')
-        new_dob = from_dob_to_age(dob)
-        dates_of_birth.append(new_dob)
+    dates_of_birth = get_birth_date()
     for dob in dates_of_birth:
         indexes.append(dates_of_birth.index(max(dates_of_birth)))
         indexes.append(dates_of_birth.index(min(dates_of_birth)))
