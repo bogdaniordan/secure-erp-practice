@@ -2,7 +2,7 @@ from model.hr import hr
 from view import terminal as view
 from model import data_manager
 import datetime
-
+from model import util
 
 def from_dob_to_age(born):
     today = datetime.date.today()
@@ -21,11 +21,25 @@ def get_birth_date():
     return dates_of_birth
 
 def list_employees():
-    view.print_error_message("Not implemented yet.")
+    element_list = data_manager.read_table_from_file(hr.DATAFILE)
+    view.print_table(element_list, hr.HEADERS)
 
 
 def add_employee():
-    view.print_error_message("Not implemented yet.")
+    tabular = []
+    name = input('Please provide a name: ')
+    birth_date = input('Please provide a birth date (e.g. 2019-04-02): ')
+    department = input('Please provide a department: ')
+    clearance = input('Please provide clearance level: ')
+    customer_id = util.generate_id()
+    tabular.append(customer_id)
+    tabular.append(name)
+    tabular.append(birth_date)
+    tabular.append(department)
+    tabular.append(clearance)
+    with open(hr.DATAFILE, 'a') as file:
+        file.write('\n')
+        file.write(';'.join(tabular))
 
 
 def update_employee():
@@ -105,6 +119,7 @@ def count_employees_per_department():
         for item in departments:
             department_dictionary.update({item : departments.count(item)})
     print(department_dictionary)
+    return department_dictionary
 
     
 
