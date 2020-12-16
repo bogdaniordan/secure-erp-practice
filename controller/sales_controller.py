@@ -70,7 +70,8 @@ def get_biggest_revenue_transaction():
 def get_biggest_revenue_product():
     biggest_transaction = get_biggest_revenue_transaction()
     product = biggest_transaction[2]
-    print(product)
+    print(f'The product that made the biggest revenue altogether is {product}.')
+    return product
 
 
 def count_transactions_between():
