@@ -27,8 +27,9 @@ def get_biggest_revenue_transaction():
         revenue.append(row[3])
     index_of_biggest_revenue = revenue.index(max(revenue))
     transaction = element_list[index_of_biggest_revenue + 1]
-    return transaction
-    print(' '.join(transaction))
+    biggest_transaction = ' '.join(transaction)
+    print(f'The transaction that made the biggest impact is {biggest_transaction}')
+    return biggest_transaction
 
 
 

@@ -66,16 +66,11 @@ def next_birthdays():
     element_list = data_manager.read_table_from_file(hr.DATAFILE)
     start_date = datetime.datetime.strptime(date_input, '%Y-%m-%d')
     add_two_weeks = datetime.timedelta(days=14)
-
     end_date = start_date + add_two_weeks
     start_date = str(start_date)
     end_date = str(end_date)
-    print(type(start_date))
-    print(type(end_date))
     start_date = start_date[:-9]
     end_date = end_date[:-9]
-    print(start_date)
-    print(end_date)
     for row in element_list:
         birth_dates.append(row[2])
         names.append(row[1])
@@ -100,8 +95,17 @@ def count_employees_with_clearance():
 
 
 def count_employees_per_department():
-
+    departments = []
+    department_dictionary = {}
     element_list = data_manager.read_table_from_file(hr.DATAFILE)
+    for row in element_list:
+        departments.append(row[-2])
+    unique_departments = set(departments)
+    for department in unique_departments:
+        for item in departments:
+            department_dictionary.update({item : departments.count(item)})
+    print(department_dictionary)
+
     
 
 def run_operation(option):
