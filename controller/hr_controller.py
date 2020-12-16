@@ -3,6 +3,7 @@ from view import terminal as view
 from model import data_manager
 import datetime
 
+
 def from_dob_to_age(born):
     today = datetime.date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
@@ -50,7 +51,10 @@ def get_oldest_and_youngest():
 
     
 def get_average_age():
-    view.print_error_message("Not implemented yet.")
+    ages = get_birth_date()
+    average_age = sum(ages)/len(ages)
+    rounded_age = int(round(average_age))
+    print(f'The average age of employees is {rounded_age}.')
 
 
 def next_birthdays():
