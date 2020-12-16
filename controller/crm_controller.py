@@ -28,7 +28,7 @@ def add_customer():
 
 def update_customer():
     element_list = data_manager.read_table_from_file(crm.DATAFILE)
-    user_input = view.get_input('Please enter the id for the customer you want to delete: ')
+    user_input = view.get_input('Please enter the id for the customer you want to update: ')
     for row in element_list:
         if user_input == row[0]:
             name = view.get_input('Please enter a new name: ')

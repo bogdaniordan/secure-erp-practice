@@ -43,12 +43,31 @@ def add_employee():
 
 
 def update_employee():
-    view.print_error_message("Not implemented yet.")
+    element_list = data_manager.read_table_from_file(hr.DATAFILE)
+    user_input = view.get_input('Please enter the id for the employee you want to update: ')
+    for row in element_list:
+        if user_input == row[0]:
+            name = view.get_input('Please enter a new name: ')
+            birth_date = view.get_input('Please enter a new birth date: ')
+            department = view.get_input('Please enter a department ')
+            clearance = view.get_input('Please enter a clearance level: ')
+            row[1] = name
+            row[2] = birth_date
+            row[3] = department
+            row[4] = clearance
+            data_manager.write_table_to_file(hr.DATAFILE, element_list)
 
 
 def delete_employee():
-    view.print_error_message("Not implemented yet.")
-
+    element_list = data_manager.read_table_from_file(hr.DATAFILE)
+    user_input = view.get_input('Please enter the id for the customer you want to remove: ')
+    for row in element_list:
+        if user_input == row[0]:
+            removed_row = row
+            print('Customer has been removed from the database!')
+            element_list.remove(removed_row)   
+            data_manager.write_table_to_file(hr.DATAFILE, element_list)
+            list_employees()
 
 def get_oldest_and_youngest():
     names = []
