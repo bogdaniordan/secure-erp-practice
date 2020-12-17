@@ -27,10 +27,10 @@ def list_employees():
 
 def add_employee():
     tabular = []
-    name = input('Please provide a name: ')
-    birth_date = input('Please provide a birth date (e.g. 2019-04-02): ')
-    department = input('Please provide a department: ')
-    clearance = input('Please provide clearance level: ')
+    name = view.get_input('Please provide a name: ')
+    birth_date = view.get_input('Please provide a birth date (e.g. 2019-04-02): ')
+    department = view.get_input('Please provide a department: ')
+    clearance = view.get_input('Please provide clearance level: ')
     customer_id = util.generate_id()
     tabular.append(customer_id)
     tabular.append(name)
@@ -95,7 +95,7 @@ def next_birthdays():
     names = []
     indexes = []
     employees_with_birthdate_2_weeks = []
-    date_input = input('Please enter a date (e.g. 2018-02-06): ')
+    date_input = view.get_input('Please enter a date (e.g. 2018-02-06): ')
     element_list = data_manager.read_table_from_file(hr.DATAFILE)
     start_date = datetime.datetime.strptime(date_input, '%Y-%m-%d')
     add_two_weeks = datetime.timedelta(days=14)
