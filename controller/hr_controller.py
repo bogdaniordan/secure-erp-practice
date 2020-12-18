@@ -4,6 +4,12 @@ from model import data_manager
 import datetime
 from model import util
 
+EMPLOYEE_ID_COLUMN = 0
+NAME_COLUMN = 1
+BIRTHDATE_COLUMN = 2
+DEPARTMENT_COLUMN = 3
+CLEARANCE_COLUMN = 4
+
 def from_dob_to_age(born):
     today = datetime.date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
@@ -14,7 +20,7 @@ def get_birth_date():
     ages = []
     element_list = data_manager.read_table_from_file(hr.DATAFILE)
     for row in element_list:
-        ages.append(row[2])
+        ages.append(row[BIRTHDATE_COLUMN])
     for dob in ages:
         dob = datetime.datetime.strptime(dob, '%Y-%m-%d')
         new_dob = from_dob_to_age(dob)
@@ -47,15 +53,15 @@ def update_employee():
     element_list = data_manager.read_table_from_file(hr.DATAFILE)
     user_input = view.get_input('Please enter the id for the employee you want to update: ')
     for row in element_list:
-        if user_input == row[0]:
+        if user_input == row[EMPLOYEE_ID_COLUMN]:
             name = view.get_input('Please enter a new name: ')
             birth_date = view.get_input('Please enter a new birth date: ')
             department = view.get_input('Please enter a department ')
             clearance = view.get_input('Please enter a clearance level: ')
-            row[1] = name
-            row[2] = birth_date
-            row[3] = department
-            row[4] = clearance
+            row[NAME_COLUMN] = name
+            row[BIRTHDATE_COLUMN] = birth_date
+            row[DEPARTMENT_COLUMN] = department
+            row[CLEARANCE_COLUMN] = clearance
             data_manager.write_table_to_file(hr.DATAFILE, element_list)
 
 
@@ -63,7 +69,7 @@ def delete_employee():
     element_list = data_manager.read_table_from_file(hr.DATAFILE)
     user_input = view.get_input('Please enter the id for the customer you want to remove: ')
     for row in element_list:
-        if user_input == row[0]:
+        if user_input == row[EMPLOYEE_ID_COLUMN]:
             removed_row = row
             print('Customer has been removed from the database!')
             element_list.remove(removed_row)   
@@ -76,7 +82,7 @@ def get_oldest_and_youngest():
     indexes = []
     element_list = data_manager.read_table_from_file(hr.DATAFILE)
     for row in element_list:
-        names.append(row[1])
+        names.append(row[NAME_COLUMN])
     dates_of_birth = get_birth_date()
     for dob in dates_of_birth:
         indexes.append(dates_of_birth.index(max(dates_of_birth)))
@@ -107,8 +113,8 @@ def next_birthdays():
     start_date = start_date[:-9]
     end_date = end_date[:-9]
     for row in element_list:
-        birth_dates.append(row[2])
-        names.append(row[1])
+        birth_dates.append(row[BIRTHDATE_COLUMN])
+        names.append(row[NAME_COLUMN])
     for date in birth_dates:
         if start_date < date and date < end_date:
             indexes.append(birth_dates.index(date))
