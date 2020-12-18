@@ -47,6 +47,7 @@ def add_employee():
     with open(hr.DATAFILE, 'a') as file:
         file.write('\n')
         file.write(';'.join(tabular))
+    list_employees()
 
 
 def update_employee():
@@ -63,6 +64,7 @@ def update_employee():
             row[DEPARTMENT_COLUMN] = department
             row[CLEARANCE_COLUMN] = clearance
             data_manager.write_table_to_file(hr.DATAFILE, element_list)
+    list_employees()
 
 
 def delete_employee():
@@ -75,6 +77,7 @@ def delete_employee():
             element_list.remove(removed_row)   
             data_manager.write_table_to_file(hr.DATAFILE, element_list)
             list_employees()
+    list_employees()
 
 
 def get_oldest_and_youngest():

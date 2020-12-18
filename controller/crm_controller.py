@@ -28,6 +28,7 @@ def add_customer():
     with open(crm.DATAFILE, 'a') as file:
         file.write('\n')
         file.write(';'.join(tabular))
+    list_customers()
    
 
 
@@ -43,6 +44,7 @@ def update_customer():
             row[EMAIL_COLUMN] = email
             row[SUBSCRIBED_COLUMN] = subscribed_status
             data_manager.write_table_to_file(crm.DATAFILE, element_list)
+    list_customers()
 
 
 
@@ -55,6 +57,7 @@ def delete_customer():
             print('Customer has been deleted from the database!')
             element_list.remove(removed_row)   
             data_manager.write_table_to_file(crm.DATAFILE, element_list)
+    list_customers()
    
 
 
