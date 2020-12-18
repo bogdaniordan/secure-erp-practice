@@ -4,6 +4,11 @@ from view import terminal as view
 from model import data_manager
 from model import util
 
+ID_COLUMN = 0
+NAME_COLUMN = 1
+EMAIL_COLUMN = 2
+SUBSCRIBED_COLUMN = 3
+
 def list_customers():
     element_list = data_manager.read_table_from_file(crm.DATAFILE)
     view.print_table(element_list, crm.HEADERS)
@@ -30,13 +35,13 @@ def update_customer():
     element_list = data_manager.read_table_from_file(crm.DATAFILE)
     user_input = view.get_input('Please enter the id for the customer you want to update: ')
     for row in element_list:
-        if user_input == row[0]:
+        if user_input == row[ID_COLUMN]:
             name = view.get_input('Please enter a new name: ')
             email = view.get_input('Please enter a new email: ')
             subscribed_status = view.get_input('Please enter a subscribed status (1: yes, 0: no): ')
-            row[1] = name
-            row[2] = email
-            row[3] = subscribed_status
+            row[NAME_COLUMN] = name
+            row[EMAIL_COLUMN] = email
+            row[SUBSCRIBED_COLUMN] = subscribed_status
             data_manager.write_table_to_file(crm.DATAFILE, element_list)
 
 
@@ -45,7 +50,7 @@ def delete_customer():
     element_list = data_manager.read_table_from_file(crm.DATAFILE)
     user_input = view.get_input('Please enter the id for the customer you want to delete: ')
     for row in element_list:
-        if user_input == row[0]:
+        if user_input == row[ID_COLUMN]:
             removed_row = row
             print('Customer has been deleted from the database!')
             element_list.remove(removed_row)   
@@ -58,7 +63,7 @@ def get_subscribed_emails():
     element_list = data_manager.read_table_from_file(crm.DATAFILE)
     for row in element_list:
         if row[-1] == '1':
-            emails.append(row[2])
+            emails.append(row[EMAIL_COLUMN])
     for email in emails:
         print(email, end='\n')
 

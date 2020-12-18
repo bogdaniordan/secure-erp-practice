@@ -8,6 +8,7 @@ def from_dob_to_age(born):
     today = datetime.date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
+
 def get_birth_date():
     dates_of_birth = []
     ages = []
@@ -68,6 +69,7 @@ def delete_employee():
             element_list.remove(removed_row)   
             data_manager.write_table_to_file(hr.DATAFILE, element_list)
             list_employees()
+
 
 def get_oldest_and_youngest():
     names = []
@@ -141,7 +143,6 @@ def count_employees_per_department():
     return department_dictionary
 
     
-
 def run_operation(option):
     if option == 1:
         list_employees()

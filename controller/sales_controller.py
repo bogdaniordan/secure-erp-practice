@@ -3,6 +3,11 @@ from view import terminal as view
 from model import data_manager
 from model import util
 
+CUSTOMER_ID_COLUMN = 1
+PRODUCT_ID_COLUMN = 2
+PRICE_COLUMN = 3
+DATE_COLUMN = 4
+
 
 def list_transactions():
     element_list = data_manager.read_table_from_file(sales.DATAFILE)
@@ -36,10 +41,10 @@ def update_transaction():
             product = view.get_input('Please enter a product name: ')
             price = view.get_input('Please provide a price for the product: ')
             date = view.get_input('Please provide the transaction date (e.g. 2019-02-03): ')
-            row[1] = customer_id
-            row[2] = product
-            row[3] = price
-            row[4] = date
+            row[CUSTOMER_ID_COLUMN] = customer_id
+            row[PRODUCT_ID_COLUMN] = product
+            row[PRICE_COLUMN] = price
+            row[DATE_COLUMN] = date
             data_manager.write_table_to_file(sales.DATAFILE, element_list)
 
 
