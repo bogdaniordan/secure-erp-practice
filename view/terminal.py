@@ -28,7 +28,6 @@ def print_message(message):
     Args:
         message: str - the message
     """
-    pass
     print(message)
 
 
@@ -54,11 +53,6 @@ def print_table(table, headers):
     Args:
         table: list of lists - the table to print out
     """
-    # printed_table = PrettyTable()
-    # printed_table.field_names = headers
-    # for row in table:
-    #     printed_table.add_row(row)
-    # print(printed_table)
     print(tabulate(table, headers))
 
 

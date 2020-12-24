@@ -87,7 +87,7 @@ def get_oldest_and_youngest():
     for row in element_list:
         names.append(row[NAME_COLUMN])
     dates_of_birth = get_birth_date()
-    for dob in dates_of_birth:
+    for date in dates_of_birth:
         indexes.append(dates_of_birth.index(max(dates_of_birth)))
         indexes.append(dates_of_birth.index(min(dates_of_birth)))
     print(f'The oldest employee is {names[indexes[0]]} and youngest one is {names[indexes[1]]}')
@@ -113,7 +113,7 @@ def next_birthdays():
     end_date = start_date + add_two_weeks
     start_date = str(start_date)
     end_date = str(end_date)
-    start_date = start_date[:-9]
+    start_date = start_date[:-9] #sliced the date, the last 9 characters were the exact time in seconds, minutes and hours
     end_date = end_date[:-9]
     for row in element_list:
         birth_dates.append(row[BIRTHDATE_COLUMN])
@@ -178,6 +178,7 @@ def run_operation(option):
 
 
 def display_menu():
+    print('========================')
     options = ["Back to main menu",
                "List employees",
                "Add new employee",
@@ -189,6 +190,7 @@ def display_menu():
                "Employees with clearance level",
                "Employee numbers by department"]
     view.print_menu("Human resources", options)
+    print('========================')
 
 
 def menu():
@@ -196,7 +198,7 @@ def menu():
     while operation != '0':
         display_menu()
         try:
-            operation = view.get_input("Select an operation")
+            operation = view.get_input("Select an operation: ")
             run_operation(int(operation))
         except KeyError as err:
             view.print_error_message(err)

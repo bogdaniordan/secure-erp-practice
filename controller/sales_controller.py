@@ -63,7 +63,7 @@ def get_biggest_revenue_transaction():
     revenue = []
     element_list = data_manager.read_table_from_file(sales.DATAFILE)
     for row in element_list:
-        revenue.append(row[3])
+        revenue.append(row[PRICE_COLUMN])
     index_of_biggest_revenue = revenue.index(max(revenue))
     transaction = element_list[index_of_biggest_revenue + 1]
     biggest_transaction = ' '.join(transaction)
@@ -74,7 +74,7 @@ def get_biggest_revenue_transaction():
 
 def get_biggest_revenue_product():
     biggest_transaction = get_biggest_revenue_transaction()
-    product = biggest_transaction[2]
+    product = biggest_transaction[PRODUCT_ID_COLUMN]
     print(f'The product that made the biggest revenue altogether is {product}.')
     return product
 
@@ -89,7 +89,7 @@ def count_transactions_between():
     count = 0
     for date in dates:
         if date > first_date and date < second_date:
-            count +=1
+            count += 1
     print(f'The number of transactions between {first_date} and {second_date} is: {count}!')
 
 
@@ -155,7 +155,7 @@ def menu():
     while operation != '0':
         display_menu()
         try:
-            operation = view.get_input("Select an operation")
+            operation = view.get_input("Select an operation: ")
             run_operation(int(operation))
         except KeyError as err:
             view.print_error_message(err)
