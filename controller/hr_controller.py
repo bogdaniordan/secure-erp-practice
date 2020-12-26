@@ -148,6 +148,7 @@ def count_employees_per_department():
     for department in unique_departments:
         for item in departments:
             department_dictionary.update({item : departments.count(item)})
+    print('Number of employees by department:')
     print(department_dictionary)
     return department_dictionary
 

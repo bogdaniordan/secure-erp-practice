@@ -67,9 +67,11 @@ def get_subscribed_emails():
     for row in element_list:
         if row[-1] == '1':
             emails.append(row[EMAIL_COLUMN])
+    print('---------------')
+    print('Subscribed customers emails list:')
     for email in emails:
         print(email, end='\n')
-
+    print('---------------')
 
 
 def run_operation(option):
